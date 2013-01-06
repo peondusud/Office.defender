@@ -1,0 +1,62 @@
+﻿La génération a démarré 06/01/2013 21:51:21.
+     1>Projet "C:\Users\X\Documents\Visual Studio 2010\Projects\test\test\test.vcxproj" sur le nœud 2 (build cible(s)).
+     1>InitializeBuildStatus:
+         Mise à jour de l'horodatage "Debug\test.unsuccessfulbuild".
+       ClCompile:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Users\X\Documents\Visual Studio 2010\Projects\test\test\include" /I"C:\Users\mastere5\Documents\Visual Studio 2010\Projects\test\test\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TC /analyze- /errorReport:prompt del_zip_file.c test.c
+         test.c
+     1>c:\users\x\documents\visual studio 2010\projects\test\test\test.c(54): warning C4047: 'initialisation' : les niveaux d'indirection de 'long' et de 'void *' sont différents
+     1>c:\users\x\documents\visual studio 2010\projects\test\test\test.c(57): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : voir la déclaration de 'fopen'
+     1>c:\users\x\documents\visual studio 2010\projects\test\test\test.c(125): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : voir la déclaration de 'fopen'
+     1>c:\users\x\documents\visual studio 2010\projects\test\test\test.c(140): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(188) : voir la déclaration de 'strncpy'
+     1>c:\users\x\documents\visual studio 2010\projects\test\test\test.c(141): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(110) : voir la déclaration de 'strcat'
+         del_zip_file.c
+     1>c:\users\x\documents\visual studio 2010\projects\test\test\del_zip_file.c(37): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(188) : voir la déclaration de 'strncpy'
+     1>c:\users\x\documents\visual studio 2010\projects\test\test\del_zip_file.c(38): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(110) : voir la déclaration de 'strcat'
+     1>c:\users\x\documents\visual studio 2010\projects\test\test\del_zip_file.c(49): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : voir la déclaration de 'strcpy'
+     1>c:\users\x\documents\visual studio 2010\projects\test\test\del_zip_file.c(50): warning C4996: 'strncat': This function or variable may be unsafe. Consider using strncat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(175) : voir la déclaration de 'strncat'
+     1>c:\users\x\documents\visual studio 2010\projects\test\test\del_zip_file.c(59): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : voir la déclaration de 'strcpy'
+     1>c:\users\x\documents\visual studio 2010\projects\test\test\del_zip_file.c(91): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : voir la déclaration de 'strcpy'
+     1>c:\users\x\documents\visual studio 2010\projects\test\test\del_zip_file.c(93): warning C4996: 'strncat': This function or variable may be unsafe. Consider using strncat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(175) : voir la déclaration de 'strncat'
+     1>c:\users\x\documents\visual studio 2010\projects\test\test\del_zip_file.c(317): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : voir la déclaration de 'strcpy'
+     1>c:\users\x\documents\visual studio 2010\projects\test\test\del_zip_file.c(319): warning C4996: 'strncat': This function or variable may be unsafe. Consider using strncat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(175) : voir la déclaration de 'strncat'
+         Génération de code en cours...
+     1>c:\users\x\documents\visual studio 2010\projects\test\test\test.c(147): warning C4716: 'open_xml' : doit retourner une valeur
+       ManifestResourceCompile:
+         Toutes les sorties sont à jour.
+       Link:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\X\Documents\Visual Studio 2010\Projects\test\Debug\test.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\X\Documents\Visual Studio 2010\Projects\test\test\lib" /LIBPATH:"C:\Users\mastere5\Documents\Visual Studio 2010\Projects\test\test\lib" zlib.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\test.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\X\Documents\Visual Studio 2010\Projects\test\Debug\test.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\X\Documents\Visual Studio 2010\Projects\test\Debug\test.lib" /MACHINE:X86 Debug\test.exe.embed.manifest.res
+         Debug\del_zip_file.obj
+         Debug\ioapi.obj
+         Debug\iowin32.obj
+         Debug\mztools.obj
+         Debug\test.obj
+         Debug\unzip.obj
+         Debug\zip.obj
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\test.exe.embed.manifest" /manifest Debug\test.exe.intermediate.manifest
+         Toutes les sorties sont à jour.
+       LinkEmbedManifest:
+         Toutes les sorties sont à jour.
+         test.vcxproj -> C:\Users\X\Documents\Visual Studio 2010\Projects\test\Debug\test.exe
+       FinalizeBuildStatus:
+         Suppression du fichier "Debug\test.unsuccessfulbuild".
+         Mise à jour de l'horodatage "Debug\test.lastbuildstate".
+     1>Génération du projet "C:\Users\X\Documents\Visual Studio 2010\Projects\test\test\test.vcxproj" terminée (build cible(s)).
+
+La génération a réussi.
+
+Temps écoulé 00:00:02.48
