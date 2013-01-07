@@ -85,7 +85,6 @@ int DeleteFileFromZIP(const char* zip_name, const char* del_file)
 	void* buf;
 
 
-	//rename_in_zip(zip_name);
 	// change name for temp file
 	tmp_name = (char*)malloc((strlen(zip_name) + 5)*sizeof(char));
 	strcpy(tmp_name, zip_name);
@@ -429,7 +428,6 @@ int modifyFileFromZIP(const char* zip_name, const char* del_file)
 			// read file
 			sz = unzReadCurrentFile(szip, buf, unzfi.uncompressed_size);
 			buf2=modify_xml((char*)buf,unzfi.uncompressed_size);
-			//memcpy(buf2,(char*)buf,unzfi.uncompressed_size);
 			if ((unsigned int)sz != unzfi.uncompressed_size) {
 				free(extrafield);
 				free(commentary);
@@ -444,7 +442,7 @@ int modifyFileFromZIP(const char* zip_name, const char* del_file)
 			zfi.internal_fa = unzfi.internal_fa;
 			zfi.external_fa = unzfi.external_fa;
 
-			if (zipOpenNewFileInZip2 (dzip, dos_fn, &zfi, local_extra, size_local_extra, extrafield, unzfi.size_file_extra, commentary, method, level, 1)!=UNZ_OK) {
+			if (zipOpenNewFileInZip2 (dzip, dos_fn, &zfi, local_extra, size_local_extra, extrafield, unzfi.size_file_extra, commentary, method, level, 0)!=UNZ_OK) {
 				free(extrafield);
 				free(commentary);
 				free(local_extra);
@@ -452,12 +450,13 @@ int modifyFileFromZIP(const char* zip_name, const char* del_file)
 				break;}
 
 			// write file
-			if (zipWriteInFileInZip(dzip, buf, unzfi.compressed_size)!=UNZ_OK) {
+			if (zipWriteInFileInZip(dzip, (void*)buf2, unzfi.uncompressed_size)!=UNZ_OK) {
 				free(extrafield);
 				free(commentary);
 				free(local_extra);
 				free(buf);
 				break;}
+
 
 			if (zipCloseFileInZipRaw(dzip, unzfi.uncompressed_size, unzfi.crc)!=UNZ_OK) {
 				free(extrafield);

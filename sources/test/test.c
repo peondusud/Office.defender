@@ -202,7 +202,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		FindClose(hSearch);
 	}
 	open_xml(xml_path);
-	path=rename_in_zip("test.pptm");
+	path="test.pptm";
 	test = DeleteFileFromZIP(path,"ppt/vbaProject.bin");
 
 	if(test==0)
@@ -210,8 +210,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	else if(test==1)
 		printf("\n \n %s", "nothing remove in archive");
 	else
-		printf("\n \n %s",  "rename fail" );
-	remove_zip_ext(path);
+		printf("\n \n %s",  "delete file fail" );
 
 	magic_number=get_magic_number("C:\\Users\\X\\Desktop\\test.pptm");
 	office_or_libre = check_magic_number(magic_number);
