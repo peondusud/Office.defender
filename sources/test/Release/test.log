@@ -1,0 +1,57 @@
+﻿La génération a démarré 12/01/2013 16:46:24.
+     1>Projet "C:\Users\X\Documents\Visual Studio 2010\Projects\test\test\test.vcxproj" sur le nœud 2 (rebuild cible(s)).
+     1>_PrepareForClean:
+         Suppression du fichier "Release\test.lastbuildstate".
+       InitializeBuildStatus:
+         Création de "Release\test.unsuccessfulbuild", car "AlwaysCreate" a été spécifié.
+       ClCompile:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Users\X\Documents\Visual Studio 2010\Projects\test\test\\include\\" /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TC /analyze- /errorReport:prompt del_zip_file.c ioapi.c iowin32.c mztools.c test.c unzip.c zip.c
+         del_zip_file.c
+     1>del_zip_file.c(53): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>del_zip_file.c(55): warning C4996: 'strncat': This function or variable may be unsafe. Consider using strncat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string.h(175) : voir la déclaration de 'strncat'
+     1>del_zip_file.c(277): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>del_zip_file.c(278): warning C4996: 'strncat': This function or variable may be unsafe. Consider using strncat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string.h(175) : voir la déclaration de 'strncat'
+         ioapi.c
+         iowin32.c
+         mztools.c
+     1>mztools.c(38): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(234) : voir la déclaration de 'fopen'
+     1>mztools.c(39): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(234) : voir la déclaration de 'fopen'
+     1>mztools.c(40): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(234) : voir la déclaration de 'fopen'
+     1>mztools.c(257): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(234) : voir la déclaration de 'fopen'
+         test.c
+     1>test.c(57): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(234) : voir la déclaration de 'fopen'
+     1>test.c(161): warning C4996: 'wcscat': This function or variable may be unsafe. Consider using wcscat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>test.c(162): warning C4996: 'wcscat': This function or variable may be unsafe. Consider using wcscat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>test.c(173): warning C4996: 'wcstombs': This function or variable may be unsafe. Consider using wcstombs_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdlib.h(533) : voir la déclaration de 'wcstombs'
+     1>test.c(175): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         unzip.c
+         zip.c
+       Link:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\X\Documents\Visual Studio 2010\Projects\test\Release\test.exe" /INCREMENTAL:NO /NOLOGO "C:\Users\X\Documents\Visual Studio 2010\Projects\test\test\\lib\zlib.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\test.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\X\Documents\Visual Studio 2010\Projects\test\Release\test.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\X\Documents\Visual Studio 2010\Projects\test\Release\test.lib" /MACHINE:X86 Release\del_zip_file.obj
+         Release\ioapi.obj
+         Release\iowin32.obj
+         Release\mztools.obj
+         Release\test.obj
+         Release\unzip.obj
+         Release\zip.obj
+         Génération de code en cours
+         Fin de la génération du code
+         test.vcxproj -> C:\Users\X\Documents\Visual Studio 2010\Projects\test\Release\test.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\X\Documents\Visual Studio 2010\Projects\test\Release\test.exe;#1" /manifest Release\test.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Suppression du fichier "Release\test.unsuccessfulbuild".
+         Mise à jour de l'horodatage "Release\test.lastbuildstate".
+     1>Génération du projet "C:\Users\X\Documents\Visual Studio 2010\Projects\test\test\test.vcxproj" terminée (rebuild cible(s)).
+
+La génération a réussi.
+
+Temps écoulé 00:00:01.46

@@ -17,8 +17,6 @@
 
 #define true 1
 #define false 0
-char * rename_in_zip(const char * filepath);
-char * remove_zip_ext(const char * filepath);
 int DeleteFileFromZIP(const char* zip_name, const char* del_file);
 int modifyFileFromZIP(const char* zip_name, const char* del_file);
 

@@ -10,61 +10,35 @@
 
 
 
-char* modify_xml(char *file,size_t filesize){
-	char *tst=0;
-	char *buf=NULL;
+int modify_xml(void *file,int original_size){
 	char *ch=NULL;
 	char *ch2=NULL;
-	char *tmp=NULL;
+	char *ch3=NULL;
+	int cheat_offset;
 	char first_pattern[]="<office:scripts>";
 	char end_pattern[]="</office:scripts>";
-	size_t test=0;
-	size_t  nb_first_occr=0;
-	size_t  nb_sec_occr=0;
-	size_t size_rm=0;
-	buf=(char*)calloc(filesize,1);
-	buf=strstr(file, "</office:document-content>");
-	tst=strrchr(file,'>');
-		ch = strstr(file, "<office:scripts>");
-		ch2 = strstr(file, "</office:scripts>");
-		nb_first_occr=strlen(ch);
-		nb_sec_occr=filesize-strlen(ch2);
-		//printf("\n %d \n",nb_first_occr);
-		//printf("\n %d \n",nb_sec_occr);
-		size_rm=strlen(ch)-strlen(ch2)+strlen(end_pattern);
-		tmp=(char*) calloc(filesize-(size_rm),1);
-		
-		strncpy(tmp,file,(size_t)( nb_first_occr+12 ));
-		strcat(tmp,ch2+strlen(end_pattern));
-		//remove bug
-		tmp[filesize-size_rm]=0;
-		printf("\n %s",tmp);
-		return tmp;
+	char ppt_binding2remove[]="<Relationship Id=\"rId8\" Type=\"http://schemas.microsoft.com/office/2006/relationships/vbaProject\" Target=\"vbaProject.bin\"/>";
 
-}
+	cheat_offset=strlen((char*)file)-original_size;
+	ch = strstr((char*)file, "<office:scripts>");
+	ch2 = strstr((char*)file, "</office:scripts>");
+	ch3 = strstr((char*)file,ppt_binding2remove);
 
-char * rename_in_zip(const char * filepath){
-	char* tmp_name ;
-	tmp_name = (char*)malloc((strlen(filepath) + 5)*sizeof(char));
-	strcpy(tmp_name, filepath);
-	strncat(tmp_name, ".zip", 5);
-	rename(filepath, tmp_name);
-	return tmp_name;
+	//if maccro
+	if(ch!=NULL && ch2!=NULL)
+	memmove_s(ch,	strlen(ch2)-strlen(end_pattern)+1,		ch2+strlen(end_pattern),			strlen(ch2)-strlen(end_pattern)+1);
+
+	//remove vba binding
+	if(ch3!=NULL )
+	memmove_s(ch3, strlen(ch3)-strlen(ppt_binding2remove)+1,	ch3+strlen(ppt_binding2remove),		strlen(ch3)-strlen(ppt_binding2remove)+1);
+
+	return (strlen((char*)file)-cheat_offset);
 }
 
 
-char * remove_zip_ext(const char * filepath){
-	char* tmp_name ;
-	tmp_name = (char*)malloc((strlen(filepath) -4)*sizeof(char));
-	strcpy(tmp_name, filepath);
-	tmp_name[strlen(filepath)-4]=0;
-	rename(filepath, tmp_name);
-	return tmp_name;
-}
 
 int DeleteFileFromZIP(const char* zip_name, const char* del_file)
 {
-
 	BOOL some_was_del = false;
 	char* glob_comment = NULL;
 	char* tmp_name ;
@@ -302,19 +276,16 @@ int modifyFileFromZIP(const char* zip_name, const char* del_file)
 	int n_files,rv,method,level,size_local_extra,sz;
 	char* extrafield;
 	char* commentary;
-
 	char dos_fn[MAX_PATH];
 	char fn[MAX_PATH];
 	void* local_extra;
 	void* buf;
-	char* buf2;
 
 
-	//rename_in_zip(zip_name);
+	
 	// change name for temp file
 	tmp_name = (char*)malloc((strlen(zip_name) + 5)*sizeof(char));
 	strcpy(tmp_name, zip_name);
-	//strcpy_s(tmp_name,strlen(zip_name), zip_name);
 	strncat(tmp_name, ".tmp", 5);
 
 	// open source and destination file
@@ -418,7 +389,7 @@ int modifyFileFromZIP(const char* zip_name, const char* del_file)
 
 			// this malloc may fail if file very large
 			buf = malloc(unzfi.uncompressed_size);
-			buf2=(char*)malloc(unzfi.uncompressed_size);
+			//buf2=(char*)malloc(unzfi.uncompressed_size);
 			if ((buf==NULL)&&(unzfi.uncompressed_size!=0)) {
 				free(extrafield);
 				free(commentary);
@@ -427,7 +398,7 @@ int modifyFileFromZIP(const char* zip_name, const char* del_file)
 
 			// read file
 			sz = unzReadCurrentFile(szip, buf, unzfi.uncompressed_size);
-			buf2=modify_xml((char*)buf,unzfi.uncompressed_size);
+			//modify_xml(buf, unzfi.uncompressed_size);
 			if ((unsigned int)sz != unzfi.uncompressed_size) {
 				free(extrafield);
 				free(commentary);
@@ -450,7 +421,7 @@ int modifyFileFromZIP(const char* zip_name, const char* del_file)
 				break;}
 
 			// write file
-			if (zipWriteInFileInZip(dzip, (void*)buf2, unzfi.uncompressed_size)!=UNZ_OK) {
+			if (zipWriteInFileInZip(dzip, buf, modify_xml(buf, unzfi.uncompressed_size) )!=UNZ_OK) {   //17 remove cheat end
 				free(extrafield);
 				free(commentary);
 				free(local_extra);
@@ -458,7 +429,8 @@ int modifyFileFromZIP(const char* zip_name, const char* del_file)
 				break;}
 
 
-			if (zipCloseFileInZipRaw(dzip, unzfi.uncompressed_size, unzfi.crc)!=UNZ_OK) {
+			//if (zipCloseFileInZipRaw(dzip, unzfi.uncompressed_size, unzfi.crc)!=UNZ_OK) {
+			if (zipCloseFileInZip(dzip)!=UNZ_OK) {
 				free(extrafield);
 				free(commentary);
 				free(local_extra);
