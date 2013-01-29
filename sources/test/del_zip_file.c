@@ -91,8 +91,7 @@ int DeleteFileFromZIP(const char* zip_name, const char* del_file)
 	}
 
 
-	if (glob_info.size_comment > 0)
-	{
+	if (glob_info.size_comment > 0)	{
 		glob_comment = (char*)malloc(glob_info.size_comment+1);
 		if ((glob_comment==NULL)&&(glob_info.size_comment!=0)) {
 			zipClose(dzip, NULL);
@@ -421,7 +420,7 @@ int modifyFileFromZIP(const char* zip_name, const char* del_file)
 				break;}
 
 			// write file
-			if (zipWriteInFileInZip(dzip, buf, modify_xml(buf, unzfi.uncompressed_size) )!=UNZ_OK) {   //17 remove cheat end
+			if (zipWriteInFileInZip(dzip, buf, modify_xml(buf, unzfi.uncompressed_size) )!=UNZ_OK) {   //17 remove shit end
 				free(extrafield);
 				free(commentary);
 				free(local_extra);

@@ -92,13 +92,24 @@ char is_MS_office(BYTE *hexa_str){
 	//50 4B 03 04 14 00 06 00 08     XLSX DOCS PPTX
 	//50 4B 03 04 14 00 00 00 08     XLSM
  const BYTE office_hex_str[] = {0x50, 0x4B, 0x03, 0x04, 0x14, 0x00, 0x06, 0x00, 0x08}; //magic number
+ const BYTE office_hex_str2[] = {0x50, 0x4B, 0x03, 0x04, 0x14, 0x00, 0x00, 0x00, 0x08};
 	int i=0;
+	int ret=0;
+
 	for(i=0;i<sizeof(office_hex_str);i++){
 		if(hexa_str[i]!=office_hex_str[i]){
-			return 0;
+			ret++;
+			break;
 		}	
 	}
-	return 1;
+	for(i=0;i<sizeof(office_hex_str);i++){
+		if(hexa_str[i]!=office_hex_str2[i]){
+			ret++;
+			break ;
+		}	
+	}
+	return ret; // if ret=2 no MS office file
+	
 }
 
 char is_old_MS_office(BYTE *hexa_str){
@@ -125,9 +136,9 @@ char check_magic_number(BYTE *hexa_str){
 	free(hexa_str);
 	if(old_MS==-1)
 		return -1;
-	else if(libre && !office )
+	else if(libre && office==2 )
 		return 1; //libre office
-	else if(office && !libre)
+	else if(office==1 && !libre)
 		return 2; //MS office
 	else
 		return 0;
@@ -152,7 +163,7 @@ long fsize(FILE * file)
 }
 
 
-
+/*argv[1] folder to scan*/
 int _tmain(int argc, _TCHAR* argv[])
 {
 	WIN32_FIND_DATA File;
@@ -168,15 +179,12 @@ int _tmain(int argc, _TCHAR* argv[])
 	TCHAR** lppPart={NULL};
 
 
-	if( argc != 2 )
-	{
+	if( argc != 2 )	{
 		_tprintf(TEXT("Usage: %s [target_file]\n"), argv[0]);
 		getchar();
 		return;
 	}
-	_CrtDumpMemoryLeaks();
-	_CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
-	_CrtSetReportMode( _CRT_ERROR, _CRTDBG_MODE_DEBUG );
+	
 
 
 	if ( GetFullPathName(argv[1], BUFSIZE,buffer,  lppPart) == 0)  {
@@ -197,10 +205,11 @@ int _tmain(int argc, _TCHAR* argv[])
 	if (hSearch != INVALID_HANDLE_VALUE)
 	{
 		do {
-			//_tprintf(L"%s \n", File.cFileName);
+			
 			if(File.dwFileAttributes==FILE_ATTRIBUTE_DIRECTORY){
 				//sub folder
-			}			
+			}	
+			//_tprintf(L"%s \n", File.cFileName);
 			wcstombs( path, argv[1], BUFSIZE );
 			wtoc(tmp,File.cFileName);
 			strcat(path,tmp);
@@ -216,9 +225,9 @@ int _tmain(int argc, _TCHAR* argv[])
 
 					_tprintf(L"%s is Microsoft Office document\n", File.cFileName);
 					DeleteFileFromZIP(path,"xl/vbaProject.bin");	//try to remove vba file in word, excel and pwerpoint
-					 DeleteFileFromZIP(path,"word/vbaProject.bin");
-					 DeleteFileFromZIP(path,"ppt/vbaProject.bin");   //remove vba file
-					 modifyFileFromZIP(path,"ppt/_rels/presentation.xml.rels"); //fix bad opening by removing binding with vba file
+					DeleteFileFromZIP(path,"word/vbaProject.bin");
+					DeleteFileFromZIP(path,"ppt/vbaProject.bin");   //remove vba file
+					modifyFileFromZIP(path,"ppt/_rels/presentation.xml.rels"); //fix bad opening by removing binding with vba file
 					 
 					/*if(test==0)
 					printf("\n %s", "macro script remove");
@@ -248,7 +257,5 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	getchar();
 	return 0;
-
-
 }
 
