@@ -64,11 +64,12 @@ BYTE * get_magic_number(const char *path){
 		return 0;
 	len = ftell(fl);
 	fseek(fl, 0, SEEK_SET);
-	ret = (BYTE*)malloc(sizeof(BYTE)*len);
+	//ret = (BYTE*)malloc(sizeof(BYTE)*len);
+	ret = (BYTE*)malloc(sizeof(BYTE)*20);
 	if(ret == NULL) 
 		return 0;
-	
-	if (fread(ret, 1, len, fl) != len) 
+	//if (fread(ret, 1, len, fl) != len) 
+	if (fread(ret, 1, 20, fl) != 20) 
 		return 0;
 	fclose(fl);
 	return ret;
@@ -217,18 +218,18 @@ int _tmain(int argc, _TCHAR* argv[])
 				office_or_libre = check_magic_number(magic_number);
 
 				if( office_or_libre == 1  ){ //libre office
-					_tprintf(L"%s \tis Libre Office document\n", File.cFileName);
+					_tprintf(L"\n%s is Libre Office document\n", File.cFileName);
 					modifyFileFromZIP(path,"content.xml");
-					//_tprintf(L"%s is clear macro remove\n", File.cFileName);
+					_tprintf(L"%s is clear macro remove\n", File.cFileName);
 				}
 				else if( office_or_libre == 2  ) {// MS office
 
-					_tprintf(L"%s is Microsoft Office document\n", File.cFileName);
+					_tprintf(L"\n%s is Microsoft Office document\n", File.cFileName);
 					DeleteFileFromZIP(path,"xl/vbaProject.bin");	//try to remove vba file in word, excel and pwerpoint
 					DeleteFileFromZIP(path,"word/vbaProject.bin");
 					DeleteFileFromZIP(path,"ppt/vbaProject.bin");   //remove vba file
 					modifyFileFromZIP(path,"ppt/_rels/presentation.xml.rels"); //fix bad opening by removing binding with vba file
-					 
+					_tprintf(L"%s is clear macro remove\n", File.cFileName);
 					/*if(test==0)
 					printf("\n %s", "macro script remove");
 					else if(test==1)
@@ -238,7 +239,7 @@ int _tmain(int argc, _TCHAR* argv[])
 				}
 				else if( office_or_libre == -1  ) {
 
-					_tprintf(L"%s is Old Microsoft Office document\n", File.cFileName);
+					_tprintf(L"\n%s is Old Microsoft Office document\n", File.cFileName);
 					remove(path);
 					_tprintf(L"%s is removed\n", File.cFileName);
 				}
@@ -254,7 +255,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		FindClose(hSearch);
 	}
 
-
+	printf("It's Finish\nPress ENTER");
 	getchar();
 	return 0;
 }
